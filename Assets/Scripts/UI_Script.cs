@@ -6,6 +6,7 @@ using System.Collections;
 public class UI_Script : MonoBehaviour 
 {
 	//public GameObject MainPanel;
+	public GameObject ParentObject;
 	public GameObject MainPanel;
 	public GameObject OptionsPanel;
 	public GameObject MultiPanel;
@@ -29,9 +30,9 @@ public class UI_Script : MonoBehaviour
 		Debug.Log ("load menu");
 
 		MainPanel.SetActive (true);
-		InfoPanel.SetActive (false);
-		MultiPanel.SetActive (false);
-		OptionsPanel.SetActive (false);
+		//InfoPanel.SetActive (false);
+		//MultiPanel.SetActive (false);
+		//OptionsPanel.SetActive (false);
 
 		//Initialize buttons
 		ButtonSINGLEPLAYER = ButtonSINGLEPLAYER.GetComponent<Button> ();
@@ -41,6 +42,21 @@ public class UI_Script : MonoBehaviour
 		ButtonQUIT = ButtonQUIT.GetComponent<Button>();
 		ButtonBACK = ButtonBACK.GetComponent<Button>();
 		ButtonMPlay = ButtonMPlay.GetComponent<Button>();
+
+		Debug.Log(ParentObject.transform.GetChild (0).name.ToString ());
+		GameObject main = ParentObject.transform.GetChild (0).gameObject;
+		ParentObject.transform.GetChild (0).gameObject.SetActive (true);
+
+//		foreach (GameObject child in main.get) {
+//			Debug.Log(child.gameObject.name.ToString());
+//					child.gameObject.SetActive (true);		
+//				}
+//
+		//Debug.Log(ParentObject.transform.GetChild (1).name.ToString ());
+		//ParentObject.transform.GetChild (1).gameObject.SetActive (false);
+
+		//Debug.Log(ParentObject.transform.GetChild (2).name.ToString ());
+		//ParentObject.transform.GetChild (2).gameObject.SetActive (false);
     }
  
     public void SinglePlayerPress() //This function will be used on our Singleplayer button
@@ -53,7 +69,7 @@ public class UI_Script : MonoBehaviour
 	public void MultiPlayerPress() //This function will be used on our Multiplayer button
 	{
 		Debug.Log ("MultiPlayerPress");
-		MultiPanel.SetActive (false);
+		MainPanel.SetActive (false);
 		MultiPanel.SetActive (true);
 
 		//CanvasMain_Menu.enabled = false; //disable the main menu
@@ -64,6 +80,9 @@ public class UI_Script : MonoBehaviour
 	public void StudentInfoPress() //This function will be used on our Student Info button
 	{
 		Debug.Log ("StudentInfoPress");
+		MainPanel.SetActive (false);
+		InfoPanel.SetActive (true);
+
 		//CanvasMain_Menu.enabled = false; //disable the main menu
 		//CanvasSInfo.enabled = true;	//enable the student info canvas
 	}
