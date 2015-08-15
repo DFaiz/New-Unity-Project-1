@@ -5,7 +5,7 @@ using System.Collections;
  
 public class UI_Script : MonoBehaviour 
 {
-	//public GameObject MainPanel;
+	//All GUI panels
 	public GameObject ParentObject;
 	public GameObject MainPanel;
 	public GameObject OptionsPanel;
@@ -18,7 +18,7 @@ public class UI_Script : MonoBehaviour
 	public Button ButtonSTUDENTINFO;
 	public Button ButtonQUIT;
 
-	//All purpose buttons (used by all canvas objects)
+	//All purpose buttons (used by all panel objects)
 	public Button ButtonOPTIONS;
 	public Button ButtonBACK;
 
@@ -65,6 +65,7 @@ public class UI_Script : MonoBehaviour
 	{
 		Debug.Log ("OptionsPress");
 		MainPanel.SetActive (false);
+		InfoPanel.SetActive (false);
 		OptionsPanel.SetActive (true);
 
 	}

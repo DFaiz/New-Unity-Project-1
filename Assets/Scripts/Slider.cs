@@ -6,11 +6,25 @@ using UnityEngine.UI;
 public class Slider : MonoBehaviour {
 
 	string sliderTextString = "0";
-	public Text sliderText; // public is needed to ensure it's available to be assigned in the inspector.
-	
-	public void textUpdate (float textUpdateNumber)
+	public Text MscsliderText; // public is needed to ensure it's available to be assigned in the inspector.
+	public Text SFXsliderText;
+	public Text MsliderText;
+
+	public void MusictextUpdate (float textUpdateNumber)
 	{
 		sliderTextString = textUpdateNumber.ToString();
-		sliderText.text = sliderTextString;
+		MscsliderText.text = sliderTextString;
+	}
+
+	public void SFXtextUpdate (float textUpdateNumber)
+	{
+		sliderTextString = textUpdateNumber.ToString();
+		SFXsliderText.text = sliderTextString;
+	}
+
+	public void MtextUpdate (float textUpdateNumber)
+	{
+		sliderTextString = textUpdateNumber.ToString();
+		MsliderText.text = sliderTextString+" $";
 	}
 }
