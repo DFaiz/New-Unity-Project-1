@@ -12,31 +12,18 @@ public class UI_Script : MonoBehaviour
 	public GameObject MultiPanel;
 	public GameObject InfoPanel;
 
-	//Main menu elements
-	public Button ButtonSINGLEPLAYER;
-	public Button ButtonMULTIPLAYER;
-	public Button ButtonSTUDENTINFO;
-	public Button ButtonQUIT;
 
-	//All purpose buttons (used by all panel objects)
-	public Button ButtonOPTIONS;
-	public Button ButtonBACK;
-
-	//Multiplayer play button
-	public Button ButtonMPlay;
 
     void Start ()
     {
 		Debug.Log ("load menu");
 	
     }
- 
-    public void SinglePlayerPress() //This function will be used on our Singleplayer button
-    {
-		Debug.Log ("SinglePlayerPress");
+	public void singlePlayerPress(){
 
-    }
- 
+		Debug.Log("singlePressed");
+	
+	}
 	public void MultiPlayerPress() //This function will be used on our Multiplayer button
 	{
 		Debug.Log ("MultiPlayerPress");
