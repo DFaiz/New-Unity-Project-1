@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour {
 		{
 			Debug.Log ("AI turn");
 			MakeMove ();
-			myboard.PlayerTurn ();
+			myboard.PlayerMove ();
 		}
 	}
 	private void MakeMove ()

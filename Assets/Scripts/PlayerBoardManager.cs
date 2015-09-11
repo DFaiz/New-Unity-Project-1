@@ -21,50 +21,54 @@ public class PlayerBoardManager : MonoBehaviour
 		Debug.Log ("done start in pbm");
 	}
 
-	public void OnButtonPressed(Button btn){
-
-			Vector2 btnPos = btn.GetComponent<ButtonInfo> ().position;
-			Debug.Log ("vector x " + btnPos.x + "vector y " + btnPos.y);
-			//checking if boat structure is not complete yet and if it's the player's turn
-			if ((Turn.Pturn)&&(CheckStructure()==false))
-			{
-				if (bs.Set_Loc (btnPos)) {
-						btn.image.color = new Color (Color.green.r, Color.green.g, Color.green.b, 1f);
-				}
+	public void OnButtonPressed(Button btn)
+	{
+		Vector2 btnPos = btn.GetComponent<ButtonInfo> ().position;
+		Debug.Log ("vector x " + btnPos.x + "vector y " + btnPos.y);
+		//checking if boat structure is not complete yet and if it's the player's turn to build ship
+		if ((Turn.Pturn)&&(CheckStructure()==false))
+		{
+			if (bs.Set_Loc (btnPos)) {
+					btn.image.color = new Color (Color.green.r, Color.green.g, Color.green.b, 1f);
 			}
+		}
 
-			if ((first_Completion == false)&& (CheckStructure()))
-		    {
-					Turn.EndTurn(false,true);
-					first_Completion = true;
-					Debug.Log("structure complete - change turn to PC");
-			}
+		if ((first_Completion == false)&& (CheckStructure()))
+	    {
+				Turn.EndTurn(false,true);
+				first_Completion = true;
+				Debug.Log("structure complete - change turn to PC");
+		}
 	}
 
 	public void EnemyMove (Vector2 vc)
 	{
 		bool attck_result = bs.ifexists (vc);
-		if (attck_result) { //move successful
-				//ship exits
-				//ship loc marked as hit
-				Debug.Log("attack success");
-				all_buttons = this.GetComponentsInChildren<Button> ();
-				foreach (Button b in all_buttons)
+		if (attck_result) 
+		{ 
+			//move successful
+			//ship exits
+			//ship loc marked as hit
+			Debug.Log("attack success");
+			all_buttons = this.GetComponentsInChildren<Button> ();
+			foreach (Button b in all_buttons)
+			{
+				if((b.GetComponent<ButtonInfo>().position.x == vc.x)&&
+			   (b.GetComponent<ButtonInfo>().position.y == vc.y))
 				{
-					if((b.GetComponent<ButtonInfo>().position.x == vc.x)&&
-				   (b.GetComponent<ButtonInfo>().position.y == vc.y))
+					//checking if location has been already marked as missed
+					if(b.image.color.Equals(Color.black)==false)
 					{
-						//checking if location has been already marked as missed
-						if(b.image.color.Equals(Color.black)==false)
+						b.image.color = new Color (Color.red.r,Color.red.g,Color.red.b,1f);
+						hit_Counter++;
+						
+						if(hit_Counter == ship_Size)
 						{
-							b.image.color = new Color (Color.red.r,Color.red.g,Color.red.b,1f);
-							hit_Counter++;
-							
-							if(hit_Counter == ship_Size)
-								Debug.Log("game over - AI won");
-						}
+							Turn.AIwon=true;
+							Debug.Log("game over - AI won");}
 					}
 				}
+			}
 		}
 		else {
 			//get button loc from vector and color grey - no ship
@@ -84,9 +88,10 @@ public class PlayerBoardManager : MonoBehaviour
 		}
 	}
 
-	public void PlayerTurn ()
+	public void PlayerMove ()
 	{
 		Debug.Log ("player's turn now");
+		Debug.Log("player's turn complete - change turn to PC");
 		Turn.EndTurn(false,true);
 	}
 	

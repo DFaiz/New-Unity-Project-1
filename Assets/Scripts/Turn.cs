@@ -5,6 +5,8 @@ public class Turn : MonoBehaviour
 {
 	public static bool Pturn;
 	public static bool AIturn;
+	public static bool Pwon;
+	public static bool AIwon;
 
 	// Use this for initialization
 	void Start ()
