@@ -19,9 +19,11 @@ public class UI_Script : MonoBehaviour
 		Debug.Log ("load menu");
 	
     }
+
 	public void singlePlayerPress(){
 
 		Debug.Log("singlePressed");
+		StartSinglePlayerLevel ();
 	
 	}
 	public void MultiPlayerPress() //This function will be used on our Multiplayer button
@@ -60,7 +62,7 @@ public class UI_Script : MonoBehaviour
     public void StartSinglePlayerLevel () //This function will be used on our Play button
     {
 		//This will load our single player scene.
-	 	Application.LoadLevel ("single");
+	 	Application.LoadLevel ("Singleplayer");
     }
  
     public void StartMultiPlayerLevel () //This function will be used on our Play button

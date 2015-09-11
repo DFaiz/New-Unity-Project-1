@@ -46,13 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BattleShip.cs" />
      <Compile Include="Assets\Scripts\ButtleShipsInfo.cs" />
      <Compile Include="Assets\Scripts\ButtonInfo.cs" />
+     <Compile Include="Assets\Scripts\Cords.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyBoardManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerBoardManager.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
      <Compile Include="Assets\Scripts\Slider.cs" />
+     <Compile Include="Assets\Scripts\Turn.cs" />
      <Compile Include="Assets\Scripts\UI_Script.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

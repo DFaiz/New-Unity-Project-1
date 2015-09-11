@@ -4,24 +4,38 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour {
 	//this class job is to rander ememy's ships location on map
 	public  int[,] enemyShips;
+	public PlayerBoardManager myboard;
+
+	private Vector2 vc;
 
 	void Start(){
 
-		enemyShips = new int[10,10];
-
-		enemyShips [0,0] = 1;
-		enemyShips [1,0] = 1;
-		enemyShips [2,0] = 1;
+		myboard = myboard.GetComponent<PlayerBoardManager> ();
 	}
 
-	int [,] getRandomLocation ()
-	//void getRandomLocation ()
+	void Update ()
+	{	
+		if (Turn.AIturn)
+		{
+			Debug.Log ("AI turn");
+			MakeMove ();
+			myboard.PlayerTurn ();
+		}
+	}
+	private void MakeMove ()
 	{
-		int[,] loc = new int[1,1];
-		loc[0,0] = Random.Range (0, 9);
-		loc[1,1] = Random.Range (0, 9);
+			//Debug.Log("structure complete");
+			//Debug.Log("generating random location");
+		getRandomLocation ();
+		myboard.EnemyMove(vc);
+		Turn.EndTurn (true, false);
+	}
 
-		return loc;
+	private void getRandomLocation ()
+	{
+		vc = new Vector2 (Random.Range (0, 10), Random.Range (0, 10));
+		Debug.Log ("random loc " + vc.x + "   " + vc.y);
+
 	}
 
 }
