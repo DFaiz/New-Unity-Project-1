@@ -2,7 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI; // we need This namespace in order to access UI elements within our script
 using System.Collections;
- 
+
+//This class is responsible for operating the main menu UI
+//All the buttons and text within are displayed using this class as well as transition between levels
 public class UI_Script : MonoBehaviour 
 {
 	//All GUI panels
@@ -12,19 +14,15 @@ public class UI_Script : MonoBehaviour
 	public GameObject MultiPanel;
 	public GameObject InfoPanel;
 
-
-
     void Start ()
     {
 		Debug.Log ("load menu");
-	
     }
 
-	public void singlePlayerPress(){
-
+	public void singlePlayerPress()
+	{
 		Debug.Log("singlePressed");
 		StartSinglePlayerLevel ();
-	
 	}
 	public void MultiPlayerPress() //This function will be used on our Multiplayer button
 	{
@@ -39,8 +37,6 @@ public class UI_Script : MonoBehaviour
 		Debug.Log ("StudentInfoPress");
 		MainPanel.SetActive (false);
 		InfoPanel.SetActive (true);
-
-
 	}
 
 	public void BackPress(GameObject backFromPanel) //This function will be used on our Back button
@@ -56,7 +52,6 @@ public class UI_Script : MonoBehaviour
 		MainPanel.SetActive (false);
 		InfoPanel.SetActive (false);
 		OptionsPanel.SetActive (true);
-
 	}
 
     public void StartSinglePlayerLevel () //This function will be used on our Play button

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Unity course Summer 2015 - David Faizulaev
+using UnityEngine;
 using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
@@ -35,7 +36,5 @@ public class EnemyAI : MonoBehaviour {
 	{
 		vc = new Vector2 (Random.Range (0, 10), Random.Range (0, 10));
 		Debug.Log ("random loc " + vc.x + "   " + vc.y);
-
 	}
-
 }

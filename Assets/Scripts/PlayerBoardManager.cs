@@ -1,6 +1,11 @@
+//Unity course Summer 2015 - David Faizulaev
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
+//Operation of the player game board.
+//Allows the player to place the battleship and is used by the enemy AI in order to make a game move.
+//either hiting or missing the player's battleship.
 
 public class PlayerBoardManager : MonoBehaviour
 {
@@ -26,6 +31,7 @@ public class PlayerBoardManager : MonoBehaviour
 		Vector2 btnPos = btn.GetComponent<ButtonInfo> ().position;
 		Debug.Log ("vector x " + btnPos.x + "vector y " + btnPos.y);
 		//checking if boat structure is not complete yet and if it's the player's turn to build ship
+
 		if ((Turn.Pturn)&&(CheckStructure()==false))
 		{
 			if (bs.Set_Loc (btnPos)) {
@@ -33,6 +39,7 @@ public class PlayerBoardManager : MonoBehaviour
 			}
 		}
 
+		//checking if boat structure is complete and transfer the turn to the AI.
 		if ((first_Completion == false)&& (CheckStructure()))
 	    {
 				Turn.EndTurn(false,true);
@@ -41,6 +48,7 @@ public class PlayerBoardManager : MonoBehaviour
 		}
 	}
 
+	//Accessed by EnemyAI in order to try and hit a player's battlesip.
 	public void EnemyMove (Vector2 vc)
 	{
 		bool attck_result = bs.ifexists (vc);
@@ -65,7 +73,8 @@ public class PlayerBoardManager : MonoBehaviour
 						if(hit_Counter == ship_Size)
 						{
 							Turn.AIwon=true;
-							Debug.Log("game over - AI won");}
+							Debug.Log("game over - AI won");
+							Turn.RestartLevel ();}
 					}
 				}
 			}
@@ -91,8 +100,6 @@ public class PlayerBoardManager : MonoBehaviour
 	public void PlayerMove ()
 	{
 		Debug.Log ("player's turn now");
-		Debug.Log("player's turn complete - change turn to PC");
-		Turn.EndTurn(false,true);
 	}
 	
 	private bool CheckStructure ()

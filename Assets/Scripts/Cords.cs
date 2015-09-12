@@ -1,3 +1,4 @@
+//Unity course Summer 2015 - David Faizulaev
 using UnityEngine;
 using System.Collections;
 

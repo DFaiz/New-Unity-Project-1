@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+//Operation of the Options and SinglePlayer slider button
 public class Slider : MonoBehaviour {
 
 	string sliderTextString = "0";

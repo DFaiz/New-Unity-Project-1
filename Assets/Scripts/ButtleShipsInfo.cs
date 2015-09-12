@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Unity course Summer 2015 - David Faizulaev
+using UnityEngine;
 using System.Collections;
 
 public enum EROTATION{
