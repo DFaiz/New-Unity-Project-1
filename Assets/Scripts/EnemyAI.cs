@@ -2,8 +2,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour {
-	//this class job is to rander ememy's ships location on map
+//the class operates the computer AI.
+//making a move to ship the player's ship when it's turn.
+public class EnemyAI : MonoBehaviour 
+{
 	public  int[,] enemyShips;
 	public PlayerBoardManager myboard;
 
@@ -25,8 +27,6 @@ public class EnemyAI : MonoBehaviour {
 	}
 	private void MakeMove ()
 	{
-			//Debug.Log("structure complete");
-			//Debug.Log("generating random location");
 		getRandomLocation ();
 		myboard.EnemyMove(vc);
 		Turn.EndTurn (true, false);

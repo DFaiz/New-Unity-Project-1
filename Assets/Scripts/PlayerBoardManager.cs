@@ -35,6 +35,7 @@ public class PlayerBoardManager : MonoBehaviour
 		if ((Turn.Pturn)&&(CheckStructure()==false))
 		{
 			if (bs.Set_Loc (btnPos)) {
+					//location is available and ship can be placed
 					btn.image.color = new Color (Color.green.r, Color.green.g, Color.green.b, 1f);
 			}
 		}
@@ -52,6 +53,7 @@ public class PlayerBoardManager : MonoBehaviour
 	public void EnemyMove (Vector2 vc)
 	{
 		bool attck_result = bs.ifexists (vc);
+		//if 'attck_result' is TRUE then the vector recieved marks a ship's location
 		if (attck_result) 
 		{ 
 			//move successful
@@ -67,6 +69,7 @@ public class PlayerBoardManager : MonoBehaviour
 					//checking if location has been already marked as missed
 					if(b.image.color.Equals(Color.black)==false)
 					{
+						//mark location as hit
 						b.image.color = new Color (Color.red.r,Color.red.g,Color.red.b,1f);
 						hit_Counter++;
 						
@@ -79,6 +82,7 @@ public class PlayerBoardManager : MonoBehaviour
 				}
 			}
 		}
+		//'attck_result' is FALSE the vector recieved does not mark a ship's location
 		else {
 			//get button loc from vector and color grey - no ship
 			Debug.Log("attack failed");
@@ -91,6 +95,7 @@ public class PlayerBoardManager : MonoBehaviour
 					//checking if location has been already marked as HIT or ship loc marked
 					if((b.image.color.Equals(Color.red)==false)&&(b.image.color.Equals(Color.green)==false))
 					{
+						//mark location as missed attempt
 						b.image.color = new Color (Color.black.r,Color.black.g,Color.black.b,1f);}
 				}
 			}

@@ -3,6 +3,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+//Operation of the AI game board.
+//At initilazation the AI places the battleship and is used by the PlayerBoardManager
+//in order to make a game move upon button press.
+//either hiting or missing the AI's battleship.
 public class EnemyBoardManager : MonoBehaviour {
 
 	public EnemyAI enemyAI;

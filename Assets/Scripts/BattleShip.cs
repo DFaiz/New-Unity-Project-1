@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+//This class operats the battleship structure and 'places' the selected location in the battleship structure.
 public class BattleShip : MonoBehaviour
 {
 	private Cords[] ship_conf;
@@ -10,6 +11,7 @@ public class BattleShip : MonoBehaviour
 	private bool ship_status;
 	private bool structure_complete;
 
+	//initialize battleship parameteres
 	public void Init_Ship (int s_size)
 	{
 		ship_conf = new Cords[s_size];
@@ -35,6 +37,7 @@ public class BattleShip : MonoBehaviour
 		return structure_complete;
 	}
 
+	//placing a ship square in the received Vector 2 if ship does not exist in that location yet.
 	public bool Set_Loc (Vector2 vc)
 	{
 		Debug.Log("in set loc");
@@ -72,6 +75,7 @@ public class BattleShip : MonoBehaviour
 		return false;
 	}
 
+	//checking if ship is location at the recieved Vector2
 	public bool ifexists (Vector2 vc)
 	{
 		if (ship_status == true) 
