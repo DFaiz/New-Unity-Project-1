@@ -27,8 +27,9 @@ public class UI_Script : MonoBehaviour
 	public void MultiPlayerPress() //This function will be used on our Multiplayer button
 	{
 		Debug.Log ("MultiPlayerPress");
-		MainPanel.SetActive (false);
-		MultiPanel.SetActive (true);
+		//MainPanel.SetActive (false);
+		//MultiPanel.SetActive (true);
+        StartMultiPlayerLevel();
 		
 	}
 
@@ -63,7 +64,7 @@ public class UI_Script : MonoBehaviour
     public void StartMultiPlayerLevel () //This function will be used on our Play button
     {
 		//This will load our multi player scene.
-	 	Application.LoadLevel ("multi");
+	 	Application.LoadLevel ("Multiplayer");
     }
  
     public void QuitGamePress () //This function will be used on our "Exit Game" button

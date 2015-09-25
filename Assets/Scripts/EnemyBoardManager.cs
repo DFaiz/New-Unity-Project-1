@@ -29,8 +29,10 @@ public class EnemyBoardManager : MonoBehaviour {
 	private void place_Battleship ()
 	{
 		Vector2 vc;
-		int static_y_value=0;
-		int static_x_value=0;
+
+		int random_x_value=0;
+		int random_y_value=0;
+
 		int last_placed_x = 0;
 		int last_placed_y = 0;
 
@@ -38,66 +40,63 @@ public class EnemyBoardManager : MonoBehaviour {
 		int initial_x = 0;
 
 		int i=0;
+		int temp_calc;
 
-		static_y_value = Random.Range (0, 10);
-		static_x_value = Random.Range (0, 10);
+		//placing first loc of AI ship
+		random_y_value = Random.Range (0, 10);
+		random_x_value = Random.Range (0, 10);
 
-		Debug.Log ("creating AI's ship");
+		vc = new Vector2 (random_x_value, random_y_value);
+		
+		if (bs.Set_Loc (vc)) 
+		{
+			//location ok - increase counter
+			initial_y = random_y_value;
+			initial_x = random_x_value;
+			last_placed_y = initial_y;
+			last_placed_x = random_x_value;
+			Debug.Log("Placed AI ship at X" + vc.x + " Y" + vc.y);
+			i++;
+		}
+
+		Debug.Log ("continuing creation of AI's ship");
 
 		//placing ship with 4 squars
 		while (i<ship_Size)
 		{
-			all_buttons = this.GetComponentsInChildren<Button> ();
-
 			//generating location for ship
-			//if condition occurs, then X axis is contant and Y values will be randomly generated.
-			if (static_y_value>static_x_value)
+			//if condition occurs, then Y axis is contant and X values will be randomly generated.
+			if (initial_y>initial_x)
 			{
-				if(i>0)
-				{
-					do {
-							static_y_value = Random.Range (0, 10);
-					} while (((static_y_value - initial_y) >= ship_Size) || ((initial_y - static_y_value) >= ship_Size));
-				}
+				temp_calc = initial_x - (ship_Size - (ship_Size - i));
+				do {
+					random_x_value = Random.Range (temp_calc, ((initial_x+3)-(i-1)));
+				} while ((random_x_value>=10)||(random_x_value<0));
 
-				else
-				{
-					static_y_value = Random.Range (0, 10);
-					initial_y = static_y_value;
-				}
-
-				vc = new Vector2 (static_x_value, static_y_value);
+				vc = new Vector2 (random_x_value, initial_y);
 
 				if (bs.Set_Loc (vc)) 
 				{
 					//location ok - increase counter
-					last_placed_y = static_y_value;
+					last_placed_x = random_x_value;
 					Debug.Log("Placed AI ship at X" + vc.x + " Y" + vc.y);
 					i++;
 				}
 			}
-			//Y axis is contant and X values will be randomly generated.
+			//X axis is contant and Y values will be randomly generated.
 			else
 			{
-				if(i>0)
-				{
-					do {
-						static_x_value = Random.Range (0, 10);
-					}
-					while (((static_x_value - initial_x) >= ship_Size) || ((initial_x - static_x_value) >= ship_Size));
+				temp_calc = initial_y - (ship_Size - (ship_Size - i));
+				do {
+						random_y_value = Random.Range (temp_calc, ((initial_y+3)-(i-1)));
+				} while ((random_y_value>=10)||(random_y_value<0));
 
-				}
-
-				else{
-					static_x_value = Random.Range (0, 10);	
-					initial_x = static_x_value;}
-
-				vc = new Vector2 (static_x_value, static_y_value);
+				vc = new Vector2 (initial_x, random_y_value);
 
 				if (bs.Set_Loc (vc)) 
 				{
 					//location ok - increase counter
-					last_placed_x = static_x_value;
+					last_placed_y = random_y_value;
 					Debug.Log("Placed AI ship at X" + vc.x + " Y" + vc.y);
 					i++;
 				}
@@ -136,7 +135,8 @@ public class EnemyBoardManager : MonoBehaviour {
 							if (hit_Counter == ship_Size) {
 								Turn.Pwon = true;
 								Debug.Log ("game over - player won");
-								Turn.RestartLevel ();
+								//winner code - 1 - player won
+								Turn.RestartLevel (1);
 							}
 							Debug.Log("player's turn complete - change turn to PC");
 							Turn.EndTurn (false, true);
